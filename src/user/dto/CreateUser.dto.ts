@@ -21,3 +21,4 @@ export class CreateUserDto {
   @IsIn(['user', 'admin'])
   role?: string;
 }
+
