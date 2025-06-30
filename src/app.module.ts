@@ -7,10 +7,12 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { UserService } from "./user/user.service";
 // import { userInfo } from "os";
 // import { userInfoSchema, userInfo } from "./models/user/entities/userInfo.entity";
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [MongooseModule.forRoot('mongodb+srv://Manikanta:8agPAtn0vWwYAFcI@cluster0.j6lznfk.mongodb.net/app?retryWrites=true&w=majority&appName=Cluster0'),
-    UserModule
+    UserModule,
+    AuthModule
     // MongooseModule.forFeature(UserModule)
     // MongooseModule.forFeature([
     //   {name:userInfo.name,

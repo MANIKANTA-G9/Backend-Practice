@@ -32,12 +32,17 @@
 
 // }
 
-import { Controller, Post, Get, Body } from '@nestjs/common';
+import { Controller, Post, Get, Body, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/CreateUser.dto';
 import { LoginDto } from './dto/login.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from 'src/roles/roles.guard';
+import { Roles } from 'src/roles/roles.decorator';
 
 @Controller('user')
+@UseGuards(AuthGuard('jwt'), RolesGuard)
+
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -52,6 +57,7 @@ export class UserController {
   }
 
   @Get()
+  @Roles('admin') 
   getAll() {
     return this.userService.getAllUsers();
   }
